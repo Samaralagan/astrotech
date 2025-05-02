@@ -1,6 +1,7 @@
 ---
 import Navbar from "../components/Navbar.jsx";
 import "../styles/global.css";
+import Footer from "../components/Footer.jsx";
 ---
 
 <html lang="en" style="scrollbar-width: none;">
@@ -14,5 +15,6 @@ import "../styles/global.css";
     <main class="min-h-screen">
       <slot />
     </main>
+    <Footer client:load />
   </body>
 </html>

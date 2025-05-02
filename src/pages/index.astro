@@ -5,12 +5,14 @@ import Features from "../components/Features.jsx";
 import Testimonial from "../components/Testimonial.jsx";
 import About from "../components/About.jsx";
 import Partners from "../components/Partners.jsx";
+import Demo from "../components/Demo";
 ---
 
 <Layout>
   <Hero client:load />
+  <About client:load />
   <Features client:load />
-  <Testimonial />
-  <About />
-  <Partners />
+  <Demo client:load />
+  <Partners client:load />
+  <Testimonial client:load />
 </Layout>

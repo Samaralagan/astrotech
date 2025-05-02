@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
-import { useRef } from "react";
 
 // Feature items data
 const FEATURES = [
@@ -42,6 +41,19 @@ const FEATURES = [
 const SPRING_OPTIONS = { type: "spring", stiffness: 300, damping: 30 };
 
 export default function Features() {
+  // Mobile detection state
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   // Ref for the shine effect
   const containerRef = useRef(null);
 
@@ -140,10 +152,16 @@ export default function Features() {
 
   return (
     <section
-      className="relative overflow-hidden py-16 px-4 md:px-8"
-      style={{ background: "#222831" }}
+      className="relative overflow-hidden md:px-8"
+      style={{
+        borderRadius: isMobile ? "0" : "0px 280px 0px 280px",
+        borderWidth: isMobile ? "0" : "1px",
+        borderColor: "#00ADB5/20",
+        padding: "25px 0px 25px 0px",
+        margin: isMobile ? "0" : "0px 40px 0px 40px",
+      }}
     >
-      <div className="absolute inset-0 backdrop-blur-lg bg-white/5"></div>
+      <div className="absolute"></div>
 
       {/* Mobile container without border */}
       <div className="container mx-auto relative z-10 lg:hidden">
@@ -286,15 +304,7 @@ export default function Features() {
       </div>
 
       {/* Desktop container with border */}
-      <div
-        className="container mx-auto relative z-10 hidden lg:block"
-        style={{
-          borderRadius: "0px 280px 0px 280px",
-          borderWidth: "1px",
-          borderColor: "#00ADB5/20",
-          padding: "25px 0px 25px 0px",
-        }}
-      >
+      <div className="container mx-auto relative z-10 hidden lg:block">
         <div className="flex flex-col lg:flex-row items-center gap-8">
           {/* Left side - Carousel */}
           <div className="w-full lg:w-1/2 flex justify-center">
