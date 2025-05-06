@@ -83,8 +83,6 @@ export default function Testimonial() {
     <section
       className="py-12 md:py-24 px-4 md:px-6 text-white overflow-hidden"
       style={{
-        borderRadius: isMobile ? "0" : "280px 0px 280px 0px",
-        borderWidth: isMobile ? "0" : "1px",
         borderColor: "#00ADB5/20",
         padding: "25px 0px 25px 0px",
         margin: isMobile ? "0" : "0px 40px 0px 40px",

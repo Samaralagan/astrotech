@@ -154,8 +154,6 @@ export default function Features() {
     <section
       className="relative overflow-hidden md:px-8"
       style={{
-        borderRadius: isMobile ? "0" : "0px 280px 0px 280px",
-        borderWidth: isMobile ? "0" : "1px",
         borderColor: "#00ADB5/20",
         padding: "25px 0px 25px 0px",
         margin: isMobile ? "0" : "0px 40px 0px 40px",
