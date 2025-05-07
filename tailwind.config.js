@@ -9,6 +9,10 @@ module.exports = {
         accent: "#00ADB5",
         light: "#EEEEEE",
       },
+      fontFamily: {
+        serif: ['"Le Jour Serif"', "serif"],
+        "le-jour": ['"Le Jour Serif"', "serif"],
+      },
     },
   },
   plugins: [],

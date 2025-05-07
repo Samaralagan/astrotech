@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Code } from "lucide-react";
-
+import par1 from "../assets/par1.png";
 export default function Partners() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [codeEffect, setCodeEffect] = useState("");
@@ -12,27 +12,27 @@ export default function Partners() {
   const partners = [
     {
       name: "TechForge AI",
-      logo: "/api/placeholder/150/100",
+      logo: par1.src,
       link: "https://example.com/techforge",
     },
     {
       name: "DevMatrix",
-      logo: "/api/placeholder/150/100",
+      logo: par1.src,
       link: "https://example.com/devmatrix",
     },
     {
       name: "CodeSphere",
-      logo: "/api/placeholder/150/100",
+      logo: par1.src,
       link: "https://example.com/codesphere",
     },
     {
       name: "Neural Labs",
-      logo: "/api/placeholder/150/100",
+      logo: par1.src,
       link: "https://example.com/neurallabs",
     },
     {
       name: "SyntaxGenius",
-      logo: "/api/placeholder/150/100",
+      logo: par1.src,
       link: "https://example.com/syntaxgenius",
     },
   ];
@@ -165,7 +165,7 @@ export default function Partners() {
                   backgroundColor: "#393E46",
                   transformStyle: "preserve-3d",
                   transition: "transform 0.5s ease, box-shadow 0.5s ease",
-                  borderRadius: "0rem 5rem 0rem 5rem",
+                  borderRadius: "2rem 2rem 2rem 2rem",
                   boxShadow: "0 8px 32px 0 rgba(0, 173, 181, 0.2)",
                   backdropFilter: "blur(8px)",
                 }}
@@ -214,10 +214,14 @@ export default function Partners() {
                     <img
                       src={partners[currentIndex].logo}
                       alt={`${partners[currentIndex].name} logo`}
-                      className="w-40 h-auto max-h-24 object-contain transform group-hover:scale-105 transition-transform"
+                      className="w-40 h-24 object-contain transform group-hover:scale-105 transition-transform"
                       width="150"
                       height="100"
-                      style={{ transform: "translateZ(30px)" }}
+                      style={{
+                        transform: "translateZ(30px)",
+                        maxWidth: "160px",
+                        maxHeight: "96px",
+                      }}
                     />
                   </div>
                 </a>
@@ -253,14 +257,14 @@ export default function Partners() {
 
               {/* AI Code Animation Box - Reduced width */}
               <div
-                className="p-4 rounded-lg font-mono text-sm relative transform overflow-hidden border border-[#00ADB5]/20 w-3/4 mx-auto"
+                className="p-4 rounded-lg font-mono text-sm relative transform overflow-hidden border border-[#00ADB5]/20 w-[100%] mx-auto"
                 style={{
                   backgroundColor: "#393E46",
                   color: "#EEEEEE",
                   transition: "transform 0.5s ease, box-shadow 0.5s ease",
                   boxShadow:
                     "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
-                  borderRadius: "0rem 2rem 0rem 2rem",
+                  borderRadius: "1rem 1rem 1rem 1rem",
                 }}
               >
                 {/* Glass shine effect for code box */}
@@ -319,7 +323,7 @@ export default function Partners() {
                   backgroundColor: "#393E46",
                   transformStyle: "preserve-3d",
                   transition: "transform 0.5s ease, box-shadow 0.5s ease",
-                  borderRadius: "0rem 10rem 0rem 10rem",
+                  borderRadius: "2rem 2rem 2rem 2rem",
                   boxShadow: "0 8px 32px 0 rgba(0, 173, 181, 0.2)",
                   backdropFilter: "blur(8px)",
                 }}
@@ -368,10 +372,14 @@ export default function Partners() {
                     <img
                       src={partners[currentIndex].logo}
                       alt={`${partners[currentIndex].name} logo`}
-                      className="w-40 h-auto max-h-24 object-contain transform group-hover:scale-105 transition-transform"
+                      className="w-40 h-24 object-contain transform group-hover:scale-105 transition-transform"
                       width="150"
                       height="100"
-                      style={{ transform: "translateZ(30px)" }}
+                      style={{
+                        transform: "translateZ(30px)",
+                        maxWidth: "160px",
+                        maxHeight: "96px",
+                      }}
                     />
                   </div>
                 </a>
@@ -407,14 +415,14 @@ export default function Partners() {
 
               {/* AI Code Animation Box - Reduced width */}
               <div
-                className="p-4 rounded-lg font-mono text-sm relative overflow-hidden border border-[#00ADB5]/20 w-[88%] mx-auto"
+                className="p-4 rounded-lg font-mono text-sm relative overflow-hidden border border-[#00ADB5]/20 w-[100%] mx-auto"
                 style={{
                   backgroundColor: "#393E46",
                   color: "#EEEEEE",
                   transition: "transform 0.5s ease, box-shadow 0.5s ease",
                   boxShadow:
                     "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
-                  borderRadius: "0rem 4rem 0rem 4rem",
+                  borderRadius: "1rem 1rem 1rem 1rem",
                 }}
               >
                 {/* Glass shine effect for code box */}
@@ -444,7 +452,7 @@ export default function Partners() {
                   style={{ transform: "translateZ(15px)" }}
                 >
                   <pre>
-                    <code style={{ color: "#00ADB5" }}>
+                    <code>
                       {codeEffect}
                       <span className="animate-pulse">|</span>
                     </code>

@@ -1,9 +1,713 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import blog1 from "../assets/blog1.jpg";
+
+// Modified blog posts to include HTML content with hyperlinks and SEO metadata
+const blogPosts = [
+{
+    title: "The AI Marketing Revolution: Transforming the Future of Customer Engagement",
+    excerpt:
+      "Artificial Intelligence <a href='https://en.wikipedia.org/wiki/Artificial_intelligence' class='text-[#00ADB5] hover:underline'>(AI)</a> is no longer a distant dream, it's a driving force behind a major shift in the marketing industry.",
+    date: "March 15, 2025",
+    author: "Admin",
+    category: "Industry Trends",
+    image: blog1,
+    content: "The AI marketing revolution isn't just another trend, it's a permanent evolution in how brands operate, strategize, and communicate. It's time to adapt, innovate, and lead the change.",
+    // Added SEO metadata
+    metaTitle: "",
+    metaDescription: "",
+    metaKeywords: ""
+  },
+  {
+    title: "Powerful Ways AI Can Supercharge Your Marketing Campaigns",
+    excerpt:
+      "In an era of digital noise and ever-evolving consumer expectations, marketers are under constant pressure to deliver results that are fast, smart, and personalized.",
+    date: "March 10, 2025",
+    author: "Admin",
+    category: "Product Updates",
+    image: blog1,
+    content: "and deliver experiences that truly connect with your audience.",
+    // Added SEO metadata
+    metaTitle: "",
+    metaDescription: ".",
+    metaKeywords: "A"
+  },
+  {
+    title: "Predictive Marketing: How AI Helps You Reach the Right Customers",
+    excerpt:
+      "In a competitive digital marketplace, reaching the right customer at the right time is key to success. Predictive marketing, powered by artificial intelligence (AI)",
+    date: "March 1, 2025",
+    author: "Admin",
+    category: "Case Studies",
+    image: blog1,
+    content: "The future of marketing is predictive and it's already here.",
+    // Added SEO metadata
+    metaTitle: "",
+    metaDescription: "",
+    metaKeywords: ""},
+  {
+    title: "The Future of Content Creation: How AI is Automating the Creative Process",
+    excerpt:
+      "Content is the backbone of digital marketing, but producing high-quality content consistently can be time-consuming and costly.",
+    date: "February 15, 2025",
+    author: "Admin",
+    category: "Industry Trends",
+    image: blog1,
+    content: " embracing AI as a creative partner will be key to staying competitive in the digital age.",
+    // Added SEO metadata
+    metaTitle: "",
+    metaDescription: "",
+    metaKeywords: ""
+  },
+  {
+    title: "Data-Driven Marketing: How AI Helps You Make Smarter Decisions",
+    excerpt:
+      "In today's digital-first world, marketing without data is like navigating without a map. Data-driven marketing has become essential for businesses aiming to make informed,",
+    date: "February 10, 2025",
+    author: "Admin",
+    category: "Tutorials",
+    image: blog1,
+    content: " In a world overflowing with data, AI is the key to making smarter, faster, and more ethical marketing decisions.",
+    // Added SEO metadata
+    metaTitle: "",
+    metaDescription: "",
+    metaKeywords: "s"
+  },
+  // Add more blog posts here as needed
+];
+
+// Reduced to 4 topic categories
+const topics = [
+  "Tutorials",
+  "Industry Trends",
+  "Case Studies",
+  "Product Updates",
+];
+
+// Count posts by category
+const postCounts = topics.reduce((acc, topic) => {
+  acc[topic] = blogPosts.filter((post) => post.category === topic).length;
+  return acc;
+}, {});
+
+// Map of blog posts to images
+const blogImages = {
+  0: blog1,
+  1: blog1,
+  2: blog1,
+  3: blog1,
+  4: blog1
+};
 ---
 
-<Layout>
-  <section className="p-8">
-    <h1 className="text-4xl text-accent font-bold">Blog Page</h1>
-  </section>
+<Layout title="Blog">
+  <!-- Main container with dark background and margin-top (changed from white to dark) -->
+  <div class="min-h-screen pt-16 bg-[#222831]">
+    <!-- Main content area -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 animate-fade-in">
+      <!-- Header section with glowing effect -->
+      <div class="text-center mb-12">
+        <div class="inline-block relative">
+          <div class="absolute -inset-1 bg-gradient-to-r from-[#00ADB5]/30 to-[#393E46]/30 rounded-lg blur-xl opacity-70"></div>
+          <h1 class="relative text-4xl md:text-5xl font-bold text-[#EEEEEE] mb-2">
+            AI <span class="text-[#00ADB5]">Marketing</span> Blog
+          </h1>
+        </div>
+        <p class="text-xl text-[#EEEEEE]/80 mt-4 max-w-2xl mx-auto">
+          Discover the latest trends and strategies in AI-powered marketing
+        </p>
+      </div>
+
+      <!-- Main content with sidebar layout -->
+      <div class="flex flex-col lg:flex-row gap-8">
+        <!-- Main blog posts grid area - 70% width -->
+        <div class="lg:w-3/4">
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12"
+            id="blog-grid"
+          >
+            {
+              blogPosts.map((post, index) => (
+                <article
+                  class={`backdrop-blur-lg bg-[#EEEEEE]/5 border border-[#EEEEEE]/20 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl hover:border-[#00ADB5]/40 transition-all duration-300 transform hover:-translate-y-2 ${index >= 4 ? "hidden" : ""}`}
+                  data-category={post.category}
+                  data-index={index}
+                  data-title={post.title}
+                  data-author={post.author}
+                  data-date={post.date}
+                  data-content={post.content}
+                  data-excerpt={post.excerpt}
+                  data-meta-title={post.metaTitle}
+                  data-meta-description={post.metaDescription}
+                  data-meta-keywords={post.metaKeywords}
+                  data-image-src={blogImages[index]?.src || "/api/placeholder/400/250"}
+                >
+                  <div class="aspect-w-16 aspect-h-9">
+                    <div class="w-full h-48 bg-[#393E46] overflow-hidden">
+                      <img
+                        src={blogImages[index]?.src || "/api/placeholder/400/250"}
+                        alt={post.title}
+                        class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                      />
+                      <div class="absolute top-4 left-4">
+                        <span class="bg-[#00ADB5] text-[#EEEEEE] text-xs font-medium px-3 py-1 rounded-full">
+                          {post.category}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="p-6">
+                    <div class="flex items-center text-sm text-[#EEEEEE]/70 mb-2">
+                      <span>{post.date}</span>
+                      <span class="mx-2">•</span>
+                      <span class="category-tag">{post.category}</span>
+                    </div>
+                    <!-- Using div with innerHTML to properly render HTML content with links -->
+                    <div class="block mt-2 cursor-pointer blog-link">
+                      <h3 class="text-xl font-semibold text-[#EEEEEE] hover:text-[#00ADB5] transition blog-title">
+                        {post.title}
+                      </h3>
+                      <p class="mt-3 text-[#EEEEEE]/80 blog-excerpt" set:html={post.excerpt} />
+                    </div>
+                    <div class="mt-4 flex items-center">
+                      <div class="flex-shrink-0">
+                        <div class="h-8 w-8 rounded-full bg-[#00ADB5] flex items-center justify-center text-[#EEEEEE]">
+                          <span class="text-xs">{post.author[0]}</span>
+                        </div>
+                      </div>
+                      <div class="ml-3">
+                        <p class="text-sm font-medium text-[#EEEEEE]">
+                          {post.author}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- SEO metadata (hidden from view) -->
+                  <meta name="title" content={post.metaTitle} />
+                  <meta name="description" content={post.metaDescription} />
+                  <meta name="keywords" content={post.metaKeywords} />
+                </article>
+              ))
+            }
+          </div>
+
+          <!-- Featured Banner/CTA Section -->
+          
+
+          <!-- Load More Button -->
+          <div class="mt-12 flex justify-center">
+            <button
+              class="px-8 py-3 bg-[#00ADB5] hover:bg-[#00ADB5]/80 text-[#EEEEEE] font-medium rounded-lg transition shadow-lg shadow-[#00ADB5]/20 group flex items-center"
+              id="load-more"
+            >
+              <span>Load More</span>
+              
+            </button>
+          </div>
+        </div>
+
+        <!-- Right sidebar for filters - 30% width -->
+        <div class="lg:w-1/4">
+          <div
+            class="backdrop-blur-lg bg-[#EEEEEE]/5 border border-[#EEEEEE]/20 rounded-xl p-6 sticky top-24"
+          >
+            <h2
+              class="text-xl font-bold mb-6 border-b border-[#EEEEEE]/10 pb-3 text-[#EEEEEE]"
+            >
+              Topics
+            </h2>
+
+            <div class="flex flex-col gap-3">
+              <button
+  class="topic-filter bg-[#393E46] text-[#EEEEEE] px-4 py-2 rounded-lg hover:bg-[#00ADB5]/80 transition flex justify-between items-center"
+  data-category="all"
+  id="filter-all"
+>
+  <span>All Topics</span>
+  <span class="text-xs bg-[#EEEEEE]/20 px-2 py-1 rounded-full">
+    {blogPosts.length}
+  </span>
+</button>
+
+              {
+                topics.map((topic) => {
+                  let bgColor = "";
+
+                  if (topic === "Tutorials")
+                    bgColor = "bg-[#393E46]";
+                  if (topic === "Industry Trends")
+                    bgColor = "bg-[#393E46]";
+                  if (topic === "Case Studies")
+                    bgColor = "bg-[#393E46]";
+                  if (topic === "Product Updates")
+                    bgColor = "bg-[#393E46]";
+
+                  return (
+                    <button
+                      class={`${bgColor} text-[#EEEEEE] px-4 py-2 rounded-lg hover:bg-[#00ADB5] transition flex justify-between items-center topic-filter`}
+                      data-category={topic}
+                    >
+                      <span>{topic}</span>
+                      <span class="text-xs bg-[#EEEEEE]/20 px-2 py-1 rounded-full">
+                        {postCounts[topic] || 0}
+                      </span>
+                    </button>
+                  );
+                })
+              }
+            </div>
+
+            
+
+            <!-- Popular tags -->
+            <div class="mt-8">
+              <h3 class="text-lg font-bold mb-4 text-[#EEEEEE]">Popular Tags</h3>
+              <div class="flex flex-wrap gap-2">
+                <span class="text-[#00ADB5] bg-[#00ADB5]/10 text-xs px-2 py-1 rounded-full hover:bg-[#00ADB5]/20 transition-colors duration-300 cursor-pointer">
+                  #AIMarketing
+                </span>
+                <span class="text-[#00ADB5] bg-[#00ADB5]/10 text-xs px-2 py-1 rounded-full hover:bg-[#00ADB5]/20 transition-colors duration-300 cursor-pointer">
+                  #DataAnalytics
+                </span>
+                <span class="text-[#00ADB5] bg-[#00ADB5]/10 text-xs px-2 py-1 rounded-full hover:bg-[#00ADB5]/20 transition-colors duration-300 cursor-pointer">
+                  #MachineLearning
+                </span>
+                <span class="text-[#00ADB5] bg-[#00ADB5]/10 text-xs px-2 py-1 rounded-full hover:bg-[#00ADB5]/20 transition-colors duration-300 cursor-pointer">
+                  #ContentAI
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Modal for displaying full blog content -->
+  <div id="blog-modal" class="fixed inset-0 bg-black bg-opacity-70 backdrop-blur-sm flex items-center justify-center z-50 hidden">
+    <div class="bg-[#222831] border border-[#EEEEEE]/10 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl" style={{scrollbarWidth:"none"}}>
+      <div class="p-6">
+        <div class="flex justify-between items-center mb-4">
+          <h2 id="modal-title" class="text-2xl font-bold text-[#EEEEEE]"></h2>
+          <button id="close-modal" class="text-[#EEEEEE]/70 hover:text-[#00ADB5]">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        <!-- Added featured image container -->
+        <div class="w-full h-64 bg-[#393E46] rounded-lg mb-6 overflow-hidden">
+          <img id="modal-image" src="" alt="" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+        </div>
+        <div class="flex items-center text-sm text-[#EEEEEE]/70 mb-6">
+          <span id="modal-date"></span>
+          <span class="mx-2">•</span>
+          <span id="modal-category" class="text-[#00ADB5]"></span>
+          <span class="mx-2">•</span>
+          <span id="modal-author"></span>
+        </div>
+        <div class="prose max-w-none">
+          <div id="modal-content" class="text-[#EEEEEE]/90"></div>
+        </div>
+      </div>
+    </div>
+  </div>
 </Layout>
+
+// This is the complete document.addEventListener code block that needs to be updated
+// Replace the entire JavaScript section with this code
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Get all filter buttons
+    const filterButtons = document.querySelectorAll(".topic-filter");
+    const allButton = document.getElementById("filter-all");
+
+    // Get all blog posts
+    const blogPosts = document.querySelectorAll("#blog-grid article");
+    
+    // Get all blog links
+    const blogLinks = document.querySelectorAll(".blog-link");
+
+    // Get the load more button
+    const loadMoreButton = document.getElementById("load-more");
+
+    // Track current visible count for load more functionality
+    let visibleCount = 4;
+    const totalPosts = blogPosts.length;
+
+    // Modal elements
+    const modal = document.getElementById("blog-modal");
+    const modalTitle = document.getElementById("modal-title");
+    const modalDate = document.getElementById("modal-date");
+    const modalCategory = document.getElementById("modal-category");
+    const modalAuthor = document.getElementById("modal-author");
+    const modalContent = document.getElementById("modal-content");
+    const modalImage = document.getElementById("modal-image");
+    const closeModal = document.getElementById("close-modal");
+    
+    // Prevent links in blog excerpts from triggering modal
+    document.querySelectorAll(".blog-excerpt a").forEach(link => {
+      link.addEventListener("click", function(e) {
+        e.stopPropagation();
+      });
+    });
+    
+    // Make entire article clickable to open modal
+    blogPosts.forEach((post) => {
+      post.addEventListener("click", function(e) {
+        // Don't open modal if clicking on a link
+        if (e.target.tagName === 'A') {
+          e.stopPropagation();
+          return;
+        }
+        
+        // Exclude clicks on topic filter buttons
+        if (e.target.closest('.topic-filter')) {
+          return;
+        }
+        
+        // Get data attributes
+        const title = this.getAttribute("data-title");
+        const date = this.getAttribute("data-date");
+        const category = this.getAttribute("data-category");
+        const author = this.getAttribute("data-author");
+        const content = this.getAttribute("data-content");
+        const imageSrc = this.getAttribute("data-image-src");
+        
+        // Get SEO metadata for this post
+        const metaTitle = this.getAttribute("data-meta-title");
+        const metaDescription = this.getAttribute("data-meta-description");
+        const metaKeywords = this.getAttribute("data-meta-keywords");
+        
+        // Update page head with post-specific SEO metadata when modal opens
+        document.title = metaTitle;
+        
+        // Find or create meta tags
+        let descriptionMeta = document.querySelector('meta[name="description"]');
+        let keywordsMeta = document.querySelector('meta[name="keywords"]');
+        
+        if (!descriptionMeta) {
+          descriptionMeta = document.createElement('meta');
+          descriptionMeta.setAttribute('name', 'description');
+          document.head.appendChild(descriptionMeta);
+        }
+        
+        if (!keywordsMeta) {
+          keywordsMeta = document.createElement('meta');
+          keywordsMeta.setAttribute('name', 'keywords');
+          document.head.appendChild(keywordsMeta);
+        }
+        
+        // Update meta tags
+        descriptionMeta.setAttribute('content', metaDescription);
+        keywordsMeta.setAttribute('content', metaKeywords);
+        
+        // Populate modal with content
+        modalTitle.textContent = title;
+        modalDate.textContent = date;
+        modalCategory.textContent = category;
+        modalAuthor.textContent = author;
+        
+        // Set HTML content instead of text content to render links
+        modalContent.innerHTML = content;
+        
+        // Set the image source and alt text
+        modalImage.src = imageSrc;
+        modalImage.alt = title;
+        
+        // Show modal
+        modal.classList.remove("hidden");
+        
+        // Prevent body scrolling when modal is open
+        document.body.style.overflow = "hidden";
+      });
+    });
+
+    // Close modal when clicking the close button
+    closeModal.addEventListener("click", function() {
+      modal.classList.add("hidden");
+      document.body.style.overflow = "auto";
+      
+      // Reset page title when modal closes
+      document.title = "Blog";
+    });
+
+    // Close modal when clicking outside the modal content
+    modal.addEventListener("click", function(e) {
+      if (e.target === modal) {
+        modal.classList.add("hidden");
+        document.body.style.overflow = "auto";
+        
+        // Reset page title when modal closes
+        document.title = "Blog";
+      }
+    });
+
+    // Add click event listener to the load more button
+    loadMoreButton.addEventListener("click", function () {
+      // Get all posts that match the current filter
+      const currentFilter = document
+        .querySelector(".active")
+        .getAttribute("data-category");
+      let matchingPosts = Array.from(blogPosts);
+
+      if (currentFilter !== "all") {
+        matchingPosts = Array.from(blogPosts).filter(
+          (post) => post.getAttribute("data-category") === currentFilter
+        );
+      }
+
+      // Show all hidden posts that match the current filter
+      matchingPosts.forEach((post) => {
+        if (post.classList.contains("hidden")) {
+          post.classList.remove("hidden");
+        }
+      });
+
+      // Hide the load more button since all posts are now visible
+      loadMoreButton.style.display = "none";
+    });
+
+    // Add click event listeners to all filter buttons
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", function () {
+        const category = this.getAttribute("data-category");
+
+        // Remove 'active' class and reset background color for all buttons
+        filterButtons.forEach((btn) => {
+          btn.classList.remove("active");
+          btn.style.backgroundColor = ""; // Reset inline style
+          if (btn.id !== "filter-all") {
+            btn.classList.add("bg-[#393E46]"); // Add back the default background class
+          }
+        });
+
+        // Add 'active' class and set background color for clicked button
+        this.classList.add("active");
+        this.style.backgroundColor = "#00ADB5"; // Set active background color
+        this.classList.remove("bg-[#393E46]"); // Remove default background class
+
+        // Reset the visible count
+        visibleCount = 4;
+
+        // Filter posts
+        let visiblePosts = 0;
+
+        // Show the load more button again
+        loadMoreButton.style.display = "block";
+
+        if (category === "all") {
+          // Show only the first 4 posts
+          blogPosts.forEach((post, index) => {
+            if (index < 4) {
+              post.classList.remove("hidden");
+              visiblePosts++;
+            } else {
+              post.classList.add("hidden");
+            }
+          });
+
+          // Hide load more if there are 4 or fewer total posts
+          if (totalPosts <= 4) {
+            loadMoreButton.style.display = "none";
+          }
+        } else {
+          // Count matching posts for the selected category
+          const matchingPosts = Array.from(blogPosts).filter(
+            (post) => post.getAttribute("data-category") === category
+          );
+
+          // Show only the first 4 matching posts
+          blogPosts.forEach((post) => {
+            if (post.getAttribute("data-category") === category) {
+              if (visiblePosts < 4) {
+                post.classList.remove("hidden");
+                visiblePosts++;
+              } else {
+                post.classList.add("hidden");
+              }
+            } else {
+              post.classList.add("hidden");
+            }
+          });
+
+          // Hide load more if there are 4 or fewer matching posts
+          if (matchingPosts.length <= 4) {
+            loadMoreButton.style.display = "none";
+          }
+        }
+      });
+    });
+
+    // Initialize with all button active and only first 4 posts visible
+    if (allButton) {
+      // Remove 'active' class and reset background color for all buttons
+      filterButtons.forEach((btn) => {
+        btn.classList.remove("active");
+        btn.style.backgroundColor = ""; // Reset inline style
+        if (btn.id !== "filter-all") {
+          btn.classList.add("bg-[#393E46]"); // Add back the default background class
+        }
+      });
+
+      // Set All Topics button as active
+      allButton.classList.add("active");
+      allButton.style.backgroundColor = "#00ADB5";
+
+      // Hide posts beyond the first 4
+      blogPosts.forEach((post, index) => {
+        if (index >= 4) {
+          post.classList.add("hidden");
+        }
+      });
+
+      // Hide load more if there are 4 or fewer total posts
+      if (totalPosts <= 4) {
+        loadMoreButton.style.display = "none";
+      }
+    }
+  });
+</script>
+
+<style>
+  /* Base styling */
+  :global(body) {
+    background-color: #222831;
+    background-image: radial-gradient(
+        circle at 10% 20%,
+        rgba(0, 173, 181, 0.1) 0%,
+        transparent 20%
+      ),
+      radial-gradient(
+        circle at 90% 80%,
+        rgba(57, 62, 70, 0.15) 0%,
+        transparent 25%
+      );
+    color: #eeeeee;
+  }
+
+  /* Animation keyframes */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      box-shadow: 0 0 0 0 rgba(0, 173, 181, 0.4);
+    }
+    50% {
+      box-shadow: 0 0 0 15px rgba(0, 173, 181, 0);
+    }
+  }
+
+  /* Animation classes */
+  .animate-fade-in {
+    animation: fadeIn 1s ease-in;
+  }
+
+  .animate-fade-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .category-tag {
+    font-weight: 500;
+    color: #00ADB5;
+  }
+
+  /* Styling for active filter button */
+  .active {
+    font-weight: bold;
+    box-shadow:
+      0 1px 3px rgba(0, 0, 0, 0.12),
+      0 1px 2px rgba(0, 0, 0, 0.24);
+  }
+  
+/* Line clamp for excerpt text */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Category tag styling */
+.category-tag {
+  font-weight: 500;
+  color: #00ADB5;
+}
+
+/* Styling for active filter button */
+.active {
+  font-weight: bold;
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);.active {
+  font-weight: bold;
+  background-color: #00ADB5 !important;
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
+}
+}
+
+/* Modal styling */
+#blog-modal {
+  scrollbar-width: none;
+}
+
+/* Code symbol styling (referenced in header template but not defined) */
+.code-symbol {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(0, 173, 181, 0.2) 0%, rgba(57, 62, 70, 0.2) 100%);
+  border: 1px solid rgba(238, 238, 238, 0.1);
+  color: #00ADB5;
+  font-size: 1.25rem;
+  font-weight: bold;
+  animation: pulse 2s infinite;
+}
+
+/* Custom scrollbar for the blog content (optional enhancement) */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(238, 238, 238, 0.05);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 173, 181, 0.3);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 173, 181, 0.5);
+}
+
+  </style>
