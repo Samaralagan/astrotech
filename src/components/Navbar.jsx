@@ -288,7 +288,7 @@ export default function Navbar() {
 
                   {/* Login/Signup button */}
                   <a
-                    href="/login"
+                    href="/signin"
                     className="ml-2 lg:ml-4 px-3 lg:px-4 py-1.5 lg:py-2 bg-teal-500 text-white text-xs lg:text-sm rounded-md hover:bg-teal-600 transition-colors whitespace-nowrap flex items-center relative overflow-hidden font-medium"
                   >
                     <svg
@@ -372,7 +372,7 @@ export default function Navbar() {
                 </a>
               ))}
               <a
-                href="/login"
+                href="/signin"
                 className="flex items-center px-3 py-2 rounded-md text-sm sm:text-base font-medium bg-teal-500 text-white hover:bg-teal-600 relative overflow-hidden"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
@@ -530,7 +530,7 @@ export default function Navbar() {
           </ul>
           <div className="mt-3 sm:mt-5 pt-1 sm:pt-2 flex justify-center">
             <a
-              href="/login"
+              href="/signin"
               className="p-1.5 sm:p-2 text-teal-400 hover:text-teal-300 hover:bg-[#393E46]/50 rounded-md transition-colors font-medium"
               title="Login"
               onMouseEnter={() => setActiveIcon("login")}
